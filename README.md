@@ -10,3 +10,4 @@
 3. `java -jar target/glue-files-jar-with-dependencies.jar <sourceFolderPath> <resultFolderPath>`
     - \<_sourceFolderPath_\> example: `path-to-repo-root\temp` (absolute path)
     - \<_resultFolderPath_\> example: `path-to-repo-root\out` (absolute path)
+    - Both folders must exist before you run the application

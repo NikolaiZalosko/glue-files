@@ -21,12 +21,13 @@ public class TextFileReaderWriterImpl implements TextFileReaderWriter {
 
   @Override
   public String glueFiles(String sourceFolderPath, String outputFolderPath) {
-    Path resultFile = null;
+    checkFolderValidity(sourceFolderPath);
+    checkFolderValidity(outputFolderPath);
 
+    Path resultFile = null;
     try {
       resultFile = createResultFile(outputFolderPath);
 
-      checkFolderValidity(sourceFolderPath);
       List<Path> files = getTextFilesRecursively(sourceFolderPath);
 
       List<String> lines = new ArrayList<>();
@@ -54,11 +55,11 @@ public class TextFileReaderWriterImpl implements TextFileReaderWriter {
 
   private void checkFolderValidity(String folderPath) {
     File sourceFolder = new File(folderPath);
-    if (!sourceFolder.isDirectory()) {
-      throw new IllegalArgumentException(folderPath + " is not a directory.");
-    }
     if (!sourceFolder.exists()) {
       throw new IllegalArgumentException(folderPath + " doesn't exist.");
+    }
+    if (!sourceFolder.isDirectory()) {
+      throw new IllegalArgumentException(folderPath + " is not a directory.");
     }
   }
 
